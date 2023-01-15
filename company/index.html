@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="generator" content="Primo" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" data-svelte="svelte-src32i">
+    <meta charset="UTF-8" data-svelte="svelte-src32i">
+    <style data-svelte="svelte-src32i">
+        /* Reset & standardize default styles */
+        @import url("https://unpkg.com/@primo-app/primo@1.3.64/reset.css") layer;
+
+        /* Design tokens (apply to components) */
+        :root {
+            /* Custom theme options */
+            --color-accent: rebeccapurple;
+
+            /* Base values */
+            --box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.2);
+            --border-radius: 8px;
+            --border-color: #cbcace;
+        }
+
+        /* Root element (use instead of `body`) */
+        #page {
+            font-family: system-ui, sans-serif;
+            color: white;
+            line-height: 1.2;
+            font-size: 1.125rem;
+            background: black;
+        }
+
+        /* Elements */
+        .section-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        a.link {
+            line-height: 1.3;
+            font-weight: 400;
+            border-bottom: 2px solid;
+            transform: translateY(-2px);
+            /* move link back into place */
+            transition: 0.1s border;
+            transition: var(--transition, 0.1s border);
+        }
+
+        a.link:hover {
+            border-color: transparent;
+        }
+
+        .heading {
+            font-size: clamp(2rem, 10vw, 3rem);
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .button {
+            color: #111;
+            font-size: 1rem;
+            background: white;
+            border-radius: 2rem;
+            padding: 18px 28px;
+            transition: 0.1s box-shadow;
+            transition: var(--transition, 0.1s box-shadow);
+            border: 0;
+        }
+
+        /* reset */
+
+        .button:hover {
+            box-shadow: 0 0 0 2px rebeccapurple;
+            box-shadow: 0 0 0 2px var(--color-accent, rebeccapurple);
+        }
+
+        .button.is-inverted {
+            background: black;
+            color: white;
+        }
+
+        /* Content Section */
+        .content {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            line-height: 1.4;
+            font-size: 2rem;
+        }
+
+        .content>* {
+            max-width: 600px;
+        }
+
+        .content p {
+            padding: 0.25rem 0;
+        }
+
+        .content img {
+            width: 100%;
+            margin: 2rem 0;
+            box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--box-shadow);
+            border-radius: 8px;
+            border-radius: var(--border-radius);
+        }
+
+        .content a.link {}
+
+        .content h1 {
+            font-size: 3.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .content h2 {
+            font-size: 2.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .content h3 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .content ul {
+            list-style: disc;
+            padding: 0.5rem 0;
+            padding-left: 1.25rem;
+        }
+
+        .content ol {
+            list-style: decimal;
+            padding: 0.5rem 0;
+            padding-left: 1.25rem;
+        }
+
+        .content blockquote {
+            padding: 2rem;
+            box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: var(--box-shadow);
+            border-radius: 8px;
+            border-radius: var(--border-radius);
+        }
+
+        .content h1 {
+            padding-top: 10rem;
+            max-width: 800px;
+        }
+    </style>
+    <style>
+        .section-container.svelte-tgm5p5.svelte-tgm5p5 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            padding-bottom: 1rem
+        }
+
+        .logo.svelte-tgm5p5.svelte-tgm5p5 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.2
+        }
+
+        .desktop-nav.svelte-tgm5p5.svelte-tgm5p5 {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%
+        }
+
+        .desktop-nav.svelte-tgm5p5 nav.svelte-tgm5p5 {
+            display: flex;
+            gap: 2rem
+        }
+
+        .desktop-nav.svelte-tgm5p5 nav a.link.svelte-tgm5p5 {
+            border-color: transparent;
+            transition: border-color 0.1s;
+            font-size: 0.95rem
+        }
+
+        .desktop-nav.svelte-tgm5p5 nav a.link.svelte-tgm5p5:hover {
+            border-color: currentColor;
+            border-color: initial
+        }
+
+        @media(min-width: 800px) {
+            .desktop-nav.svelte-tgm5p5.svelte-tgm5p5 {
+                display: flex
+            }
+        }
+
+        .mobile-nav.svelte-tgm5p5.svelte-tgm5p5 {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            font-weight: 500
+        }
+
+        @media(min-width: 800px) {
+            .mobile-nav.svelte-tgm5p5.svelte-tgm5p5 {
+                display: none
+            }
+        }
+
+        #popup.svelte-tgm5p5.svelte-tgm5p5 {
+            font-size: 1.25rem;
+            display: grid;
+            grid-gap: 1rem;
+            gap: 1rem;
+            position: absolute;
+            text-align: center;
+            background-color: white;
+            background-color: var(--background-color, white);
+            box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--box-shadow, 0px 4px 30px rgba(0, 0, 0, 0.1));
+            border-radius: var(--border-radius);
+            inset: 0.5rem;
+            bottom: auto;
+            bottom: initial;
+            padding: 2rem;
+            z-index: 1;
+            color: black
+        }
+
+        #popup.svelte-tgm5p5 button#close.svelte-tgm5p5 {
+            position: absolute;
+            right: 1rem;
+            top: 1rem
+        }
+
+        .section-container.svelte-122c26z.svelte-122c26z {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem
+        }
+
+        .heading.svelte-122c26z.svelte-122c26z {
+            text-align: center
+        }
+
+        ul.svelte-122c26z.svelte-122c26z {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+            grid-gap: 1.5rem;
+            gap: 1.5rem
+        }
+
+        ul.svelte-122c26z li.svelte-122c26z {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            border: 1px solid #eee;
+            border: 1px solid var(--border-color, #eee);
+            border-radius: var(--border-radius);
+            padding: 1.5rem
+        }
+
+        ul.svelte-122c26z li .title.svelte-122c26z {
+            display: flex;
+            gap: 0.5rem;
+            font-weight: bold
+        }
+
+        .section-container.svelte-13dspl7.svelte-13dspl7.svelte-13dspl7 {
+            display: grid;
+            place-items: center
+        }
+
+        .heading.svelte-13dspl7.svelte-13dspl7.svelte-13dspl7 {
+            text-align: center;
+            margin-bottom: 1.5rem
+        }
+
+        .accordion.svelte-13dspl7.svelte-13dspl7.svelte-13dspl7 {
+            width: 100%;
+            max-width: 900px
+        }
+
+        .accordion.svelte-13dspl7 .item.svelte-13dspl7.svelte-13dspl7 {
+            padding: 1.5rem 0
+        }
+
+        .accordion.svelte-13dspl7 .item.svelte-13dspl7.svelte-13dspl7:not(:last-child) {
+            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border-color, #eee)
+        }
+
+        .accordion.svelte-13dspl7 .item.active button .icon.svelte-13dspl7.svelte-13dspl7 {
+            transform: scaleY(-1)
+        }
+
+        .accordion.svelte-13dspl7 .item button.svelte-13dspl7.svelte-13dspl7 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%
+        }
+
+        .accordion.svelte-13dspl7 .item button span.svelte-13dspl7.svelte-13dspl7 {
+            font-size: 1.25rem;
+            font-weight: 600
+        }
+
+        .accordion.svelte-13dspl7 .item button .icon.svelte-13dspl7.svelte-13dspl7 {
+            font-size: 1.25rem;
+            color: rebeccapurple;
+            color: var(--color-accent, rebeccapurple);
+            transition: transform 0.2s
+        }
+
+        .accordion.svelte-13dspl7 .item button.svelte-13dspl7+.description.svelte-13dspl7 {
+            padding-top: 0.5rem
+        }
+
+        .accordion.svelte-13dspl7 .item .description.svelte-13dspl7.svelte-13dspl7 {
+            padding-right: 2rem
+        }
+
+        footer.svelte-ab6a2u.svelte-ab6a2u {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 10rem
+        }
+
+        nav.svelte-ab6a2u.svelte-ab6a2u {
+            display: grid;
+            place-items: start;
+            grid-gap: 1.5rem;
+            gap: 1.5rem;
+            font-size: 2rem
+        }
+
+        .primo.svelte-ab6a2u a.svelte-ab6a2u {
+            text-decoration: underline
+        }
+    </style>
+</head>
+
+<body id="page">
+
+    <div class="section has-component" id="fhebv">
+        <div class="component">
+            <header class="section-container svelte-tgm5p5">
+                <div class="desktop-nav svelte-tgm5p5"><a href="/" class="logo svelte-tgm5p5">Homepagina</a>
+                    <nav class="svelte-tgm5p5"><a class="link svelte-tgm5p5" href="/work">Werken</a><a class="link svelte-tgm5p5" href="/services">Diensten</a><a class="link svelte-tgm5p5" href="/company">Bedrijf</a><a class="link svelte-tgm5p5" href="/contact">Contact</a></nav>
+                </div>
+                <div class="mobile-nav svelte-tgm5p5"><a href="/" class="logo svelte-tgm5p5">Homepagina</a>
+                    <button id="open" aria-label="Open mobile navigation"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden role="img" width="30" height="30" viewBox="0 0 24 24" class="iconify iconify--eva">
+                            <!-- HTML_TAG_START -->
+                            <g id="iconifySvelte0">
+                                <g id="iconifySvelte1">
+                                    <g id="iconifySvelte2" fill="currentColor">
+                                        <rect width="18" height="2" x="3" y="11" rx=".95" ry=".95" />
+                                        <rect width="18" height="2" x="3" y="16" rx=".95" ry=".95" />
+                                        <rect width="18" height="2" x="3" y="6" rx=".95" ry=".95" />
+                                    </g>
+                                </g>
+                            </g><!-- HTML_TAG_END -->
+                        </svg></button>
+                </div>
+            </header>
+        </div>
+    </div>
+    <div class="section has-component" id="wzcjk">
+        <div class="component">
+            <section class="section-container svelte-122c26z">
+                <h2 class="heading svelte-122c26z">Een paar weetjes over ons</h2>
+                <ul class="svelte-122c26z">
+                    <li class="svelte-122c26z">
+                        <h3 class="title svelte-122c26z"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden role="img" width="20" height="20" viewBox="0 0 24 24" style="color: var(--color-accent, rebeccapurple)" class="iconify iconify--akar-icons">
+                                <!-- HTML_TAG_START -->
+                                <path fill="currentColor" fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1Zm4.768 9.14a1 1 0 1 0-1.536-1.28l-4.3 5.159l-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.475-.067l5-6Z" clip-rule="evenodd" /><!-- HTML_TAG_END -->
+                            </svg>
+                            <span>We werken in een klein team</span>
+                        </h3>
+                        <div class="description">
+                            <!-- HTML_TAG_START -->
+                            <p>We werken in een team van zo’n vier professionals.</p><!-- HTML_TAG_END -->
+                        </div>
+                    </li>
+                    <li class="svelte-122c26z">
+                        <h3 class="title svelte-122c26z"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden role="img" width="20" height="20" viewBox="0 0 24 24" style="color: var(--color-accent, rebeccapurple)" class="iconify iconify--akar-icons">
+                                <!-- HTML_TAG_START -->
+                                <path fill="currentColor" fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1Zm4.768 9.14a1 1 0 1 0-1.536-1.28l-4.3 5.159l-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.475-.067l5-6Z" clip-rule="evenodd" /><!-- HTML_TAG_END -->
+                            </svg>
+                            <span>4+ jaar ervaring</span>
+                        </h3>
+                        <div class="description">
+                            <!-- HTML_TAG_START -->
+                            <p>En hebben hierin zo’n 90 mooie merken mogen helpen.</p><!-- HTML_TAG_END -->
+                        </div>
+                    </li>
+                    <li class="svelte-122c26z">
+                        <h3 class="title svelte-122c26z"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden role="img" width="20" height="20" viewBox="0 0 24 24" style="color: var(--color-accent, rebeccapurple)" class="iconify iconify--akar-icons">
+                                <!-- HTML_TAG_START -->
+                                <path fill="currentColor" fill-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1Zm4.768 9.14a1 1 0 1 0-1.536-1.28l-4.3 5.159l-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.475-.067l5-6Z" clip-rule="evenodd" /><!-- HTML_TAG_END -->
+                            </svg>
+                            <span>We houden niet van lange contracten</span>
+                        </h3>
+                        <div class="description">
+                            <!-- HTML_TAG_START -->
+                            <p>Bevalt een samenwerking om welke reden dan ook niet? Dan kun je meteen weer stoppen!</p><!-- HTML_TAG_END -->
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+    <div class="section has-component" id="cebvg">
+        <div class="component">
+            <section class="section-container svelte-13dspl7">
+                <h2 class="heading svelte-13dspl7">Veelgestelde vragen</h2>
+                <div class="accordion svelte-13dspl7">
+                    <div class="item svelte-13dspl7 active"><button class="svelte-13dspl7"><span class="svelte-13dspl7">Ik heb een offerte aangevraagd, wanneer ontvang ik deze?</span>
+                            <span class="icon svelte-13dspl7"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden role="img" width="1em" height="1em" viewBox="0 0 256 256" class="iconify iconify--ph">
+                                    <!-- HTML_TAG_START -->
+                                    <path fill="currentColor" d="M128 188a12.2 12.2 0 0 1-8.5-3.5l-80-80a12 12 0 0 1 17-17L128 159l71.5-71.5a12 12 0 0 1 17 17l-80 80a12.2 12.2 0 0 1-8.5 3.5Z" /><!-- HTML_TAG_END -->
+                                </svg>
+                            </span></button>
+                        <div class="description svelte-13dspl7">
+                            <!-- HTML_TAG_START -->
+                            <p>Wij streven er naar om tijdens kantooruren (8:30 - 17:30 uur) binnen 1 á 2 uur een offerte op maat te versturen.</p><!-- HTML_TAG_END -->
+                        </div>
+                        <noscript>
+                            <div class="description svelte-13dspl7">
+                                <!-- HTML_TAG_START -->
+                                <p>Wij streven er naar om tijdens kantooruren (8:30 - 17:30 uur) binnen 1 á 2 uur een offerte op maat te versturen.</p><!-- HTML_TAG_END -->
+                            </div>
+                        </noscript>
+                    </div>
+                    <div class="item svelte-13dspl7"><button class="svelte-13dspl7"><span class="svelte-13dspl7">Wat is de levertijd?</span>
+                            <span class="icon svelte-13dspl7"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden role="img" width="1em" height="1em" viewBox="0 0 256 256" class="iconify iconify--ph">
+                                    <!-- HTML_TAG_START -->
+                                    <path fill="currentColor" d="M128 188a12.2 12.2 0 0 1-8.5-3.5l-80-80a12 12 0 0 1 17-17L128 159l71.5-71.5a12 12 0 0 1 17 17l-80 80a12.2 12.2 0 0 1-8.5 3.5Z" /><!-- HTML_TAG_END -->
+                                </svg>
+                            </span></button>
+
+                            <div class="description svelte-13dspl7">
+                                <!-- HTML_TAG_START -->
+                                <p>De levertijd varieert per dienst. Sommige diensten kunnen worden geleverd in slechts 12 uur!</p><!-- HTML_TAG_END -->
+                            </div>
+                    </div>
+                    <div class="item svelte-13dspl7"><button class="svelte-13dspl7"><span class="svelte-13dspl7">Hoe kan ik betalen?</span>
+                            <span class="icon svelte-13dspl7"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden role="img" width="1em" height="1em" viewBox="0 0 256 256" class="iconify iconify--ph">
+                                    <!-- HTML_TAG_START -->
+                                    <path fill="currentColor" d="M128 188a12.2 12.2 0 0 1-8.5-3.5l-80-80a12 12 0 0 1 17-17L128 159l71.5-71.5a12 12 0 0 1 17 17l-80 80a12.2 12.2 0 0 1-8.5 3.5Z" /><!-- HTML_TAG_END -->
+                                </svg>
+                            </span></button>
+
+                            <div class="description svelte-13dspl7">
+                                <!-- HTML_TAG_START -->
+                                <p>Wij werken samen met Mollie.com, een partner op het gebied van betaaloplossingen. Bestellingen kunnen direct betaald worden met iDEAL, Bancontant, Sofort Banking, PayPal, Creditcard of Bitcoin. Uiteraard is er ook de mogelijkheid om te betalen via bankoverschrijving (om vertraging te vermijden raden wij aan om een betaalmethode van Mollie te kiezen).</p><!-- HTML_TAG_END -->
+                            </div>
+                    </div>
+                    <div class="item svelte-13dspl7"><button class="svelte-13dspl7"><span class="svelte-13dspl7">Hoe kan ik contact met u opnemen?</span>
+                            <span class="icon svelte-13dspl7"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden role="img" width="1em" height="1em" viewBox="0 0 256 256" class="iconify iconify--ph">
+                                    <!-- HTML_TAG_START -->
+                                    <path fill="currentColor" d="M128 188a12.2 12.2 0 0 1-8.5-3.5l-80-80a12 12 0 0 1 17-17L128 159l71.5-71.5a12 12 0 0 1 17 17l-80 80a12.2 12.2 0 0 1-8.5 3.5Z" /><!-- HTML_TAG_END -->
+                                </svg>
+                            </span></button>
+
+                            <div class="description svelte-13dspl7">
+                                <!-- HTML_TAG_START -->
+                                <p>Kijk bovenaan of onderaan elke pagina van onze website en u vindt een knop "Contact". U kunt ons ook mailen op: info@sportnation.website</p><!-- HTML_TAG_END -->
+                            </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="section has-component" id="cxpzq">
+        <div class="component">
+            <footer class="section-container svelte-ab6a2u">
+                <nav class="svelte-ab6a2u"><a class="link" href="/work">Werken</a><a class="link" href="/services">Diensten</a><a class="link" href="/company">Bedrijf</a><a class="link" href="/contact">Contacteer ons</a></nav>
+                <span class="primo svelte-ab6a2u">Powered by
+                    <a href="https://primo.so" class="primo svelte-ab6a2u">Primo</a></span>
+            </footer>
+        </div>
+    </div>
+
+    <script type="module">
+        const path = window.location.pathname === '/' ? '' : window.location.pathname
+        const [{
+            default: App
+        }, data] = await Promise.all([
+            import(path + '/_module.js'),
+            fetch('/en.json').then(res => res.json())
+        ]).catch(e => console.error(e))
+        new App({
+            target: document.querySelector('body'),
+            hydrate: true,
+        })
+    </script>
+</body>
+
+</html>
